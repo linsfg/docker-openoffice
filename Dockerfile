@@ -1,18 +1,14 @@
-FROM ubuntu:14.04
+FROM openjdk:8-jdk-alpine
 
-MAINTAINER Chris Daish <chrisdaish@gmail.com>
+MAINTAINER Archer lin <linsfg@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV OPENOFFICEVERSION 4.1.1
-ENV OPENOFFICEPACKAGE Apache_OpenOffice_4.1.1_Linux_x86-64_install-deb_en-US.tar.gz
+ENV OPENOFFICEVERSION 4.1.5
+ENV OPENOFFICEPACKAGE Apache_OpenOffice_4.1.5_Linux_x86-64_install-deb_en-US.tar.gz
 ENV uid 1000
 ENV gid 1000
 
-RUN useradd -m openoffice; \
-    apt-get update; \
-    apt-get install -y  wget \
-                        openjdk-7-jre; \
-    rm -rf /var/lib/apt/lists/*
+RUN useradd -m openoffice
 
 RUN wget -q http://downloads.sourceforge.net/project/openofficeorg.mirror/$OPENOFFICEVERSION/binaries/en-US/$OPENOFFICEPACKAGE -O /tmp/$OPENOFFICEPACKAGE; \
     mkdir /tmp/OpenOffice; \
